@@ -7,51 +7,61 @@ __email__ = "leonard.hoffmann@stud.uni-frankfurt.de"
 
 
 import pandas as pd
-from tisch import Tisch
-from produkt import Produkt
+
+from table import Table
+from product import Product
 
 
 class Restaurant:
+    """Containing methods to organize the tables and products.
+    """
+
     def __init__(self):
-        self.tische = []
-        self.produkte = []
+        self.tables = []
+        self.products = []
 
-    def lade_produkte(self):
-        """Lädt Produkte aus einer CSV-Datei."""
+    def load_products(self):
+        """Reads in the products contained in the food.csv file
+        and stores the in a list as a touple with its name and price.
+        """
+        # try to open the file food.csv
         try:
-            with open('food.csv', mode='r', encoding='utf-8') as csvfile:
-                df = pd.read_csv(csvfile, sep=';')
+            with open('food.csv', mode='r', encoding='utf-8') as menue:
+                df = pd.read_csv(menue, sep=';')
                 for row in range(len(df)):
-                    produkt = Produkt(name=df.values[row][0], price=float(df.values[row][3]))
-                    self.produkte.append(produkt)
-            print("Produkte erfolgreich geladen.")
+                    product = Product(name=df.values[row][0], price=float(df.values[row][3]))
+                    self.products.append(product)
+            print("Products loaded successfully.")
+            # print(self.products)
+
+        # throw Exeptions if the file is not found or the layout of its contents is incorrect.
         except FileNotFoundError:
-            print("Datei nicht gefunden. Bitte überprüfen Sie den Pfad.")
+            print("File not found! Check if the file is named correcly -> food.csv")
         except KeyError:
-            print("Fehlerhafte CSV-Datei. \
-                  Stellen Sie sicher, dass die Spalten 'name' und 'price' vorhanden sind.")
+            print("Faulty csv-file! \
+                  Check if 'name' is the first and 'price' the fourth collumn of the table inside.")
 
-    def finde_tisch(self, tischnummer):
-        """Findet einen Tisch anhand seiner Nummer."""
-        for tisch in self.tische:
-            if tisch.nummer == tischnummer:
-                return tisch
+    def find_table(self, tablenumber):
+        """Find a table through its designated number.
+        """
+        for table in self.tables:
+            if table.number == tablenumber:
+                return table
         return None
 
-    def finde_produkt(self, produktname):
-        """Findet ein Produkt anhand seines Namens."""
-        for produkt in self.produkte:
-            if produkt.name.lower() == produktname.lower():
-                return produkt
+    def find_product(self, productname):
+        """Find a product through its designated name."""
+        for product in self.products:
+            # convert to lowercase
+            if productname == product.name:
+                return product
         return None
 
-    def hinzufuegen_tisch(self, tischnummer):
-        """Fügt einen neuen Tisch hinzu."""
-        if self.finde_tisch(tischnummer):
-            print(f"Tisch {tischnummer} existiert bereits.")
+    def add_table(self, tablenumber):
+        """Add a new table to the list of occupied tables."""
+        if self.find_table(tablenumber):
+            print(f"Table {tablenumber} is occupied.")
         else:
-            neuer_tisch = Tisch(tischnummer)
-            self.tische.append(neuer_tisch)
-
-if __name__ == "__main__":
-    Restaurant.lade_produkte('x')
+            new_table = Table(tablenumber)
+            # print(new_table)
+            self.tables.append(new_table)

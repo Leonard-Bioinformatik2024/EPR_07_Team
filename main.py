@@ -7,70 +7,95 @@ __email__ = "leonard.hoffmann@stud.uni-frankfurt.de"
 
 
 from restaurant import Restaurant
-from bestellung import Bestellung
-from rechnung import Rechnung
+from order import Order
+from bill import Bill
 
 def main():
-    print("Willkommen zum Restaurant-Management-System!")
+    """Using methods of the classes from imported modules to create an OMS.
+    """
 
-    # Restaurant initialisieren
+    print("Order-Management-System")
+
+    # create instance of Restaurant
     restaurant = Restaurant()
 
-    # Produkte aus CSV-Datei laden
-    restaurant.lade_produkte()
+    # use load_products from the instance Restaurant to create a list of all available products
+    restaurant.load_products()
 
+    # loop for multiple inputs
     while True:
-        print("\nHauptmenü")
-        print("1. Neuer Tisch")
-        print("2. Bestellung aufnehmen")
-        print("3. Rechnung erstellen")
-        print("4. Programm beenden")
+        print("\nMain Menue")
+        print("1. Create new table")
+        print("2. Take order")
+        print("3. Create bill")
+        print("4. Exit OMS")
 
-        auswahl = input("Wählen Sie eine Option: ")
+        while True:
+            options = ['1', '2', '3', '4']
+            option = input("Choose an option [1-4]: ")
+            if option in options:
+                break
+            print('invalide input')
 
-        if auswahl == "1":
-            tischnummer = int(input("Geben Sie die Tischnummer ein: "))
-            restaurant.hinzufuegen_tisch(tischnummer)
-            print(f"Tisch {tischnummer} wurde hinzugefügt.")
+        if option == "1":
+            while True:
+                try:
+                    tablenumber = int(input("Enter the tablenumber: "))
+                    break
+                except ValueError:
+                    print("invalide input")
+            restaurant.add_table(tablenumber)
+            print(f"Table {tablenumber} added.")
 
-        elif auswahl == "2":
-            tischnummer = int(input("Geben Sie die Tischnummer ein: "))
-            tisch = restaurant.finde_tisch(tischnummer)
-            if not tisch:
-                print("Tisch nicht gefunden.")
+        elif option == "2":
+            while True:
+                try:
+                    tablenumber = int(input("Enter the tablenumber: "))
+                    break
+                except ValueError:
+                    print("invalide input")
+            table = restaurant.find_table(tablenumber)
+            if not table:
+                print("Table not found.")
                 continue
 
-            produktname = input("Geben Sie den Namen des Produkts ein: ")
-            produkt = restaurant.finde_produkt(produktname)
-            if not produkt:
-                print("Produkt nicht gefunden.")
+            productname = input("Enter the name of the product: ")
+            product = restaurant.find_product(productname)
+            if not product:
+                print("Product not found.")
                 continue
 
-            sonderwuensche = input("Geben Sie Sonderwünsche ein \
-                                   (Komma getrennt, leer lassen für keine): ").split(",")
-            sonderwuensche = [sw.strip() for sw in sonderwuensche if sw.strip()]
+            special_requests = input("Enter special requests (use comma as seperator): ").split(",")
+            # create a clean list from input
+            # https://www.datacamp.com/tutorial/python-trim?dc_referrer=https%3A%2F%2Fwww.google.com%2F
+            special_requests = [sr.strip() for sr in special_requests if sr.strip()]
 
-            bestellung = Bestellung(produkt, sonderwuensche)
-            tisch.hinzufuegen_bestellung(bestellung)
-            print("Bestellung wurde aufgenommen.")
+            order = Order(product, special_requests)
+            table.add_order(order)
+            print("Order was recorded.")
 
-        elif auswahl == "3":
-            tischnummer = int(input("Geben Sie die Tischnummer ein: "))
-            tisch = restaurant.finde_tisch(tischnummer)
-            if not tisch:
-                print("Tisch nicht gefunden.")
+        elif option == "3":
+            while True:
+                try:
+                    tablenumber = int(input("Enter the tablenumber: "))
+                    break
+                except ValueError:
+                    print("invalide input")
+            table = restaurant.find_table(tablenumber)
+            if not table:
+                print("Table not found.")
                 continue
 
-            rechnung = Rechnung(tisch)
-            rechnung.erstelle_rechnung()
-            print(f"Rechnung für Tisch {tischnummer} wurde erstellt und gespeichert.")
+            bill = Bill(table)
+            bill.create_bill()
+            print(f"Created and saved bill for table {tablenumber}.")
 
-        elif auswahl == "4":
-            print("Programm wird beendet. Auf Wiedersehen!")
+        elif option == "4":
+            print("Closing OMS.")
             break
 
         else:
-            print("Ungültige Eingabe. Bitte erneut versuchen.")
+            print("invalide input")
 
 if __name__ == "__main__":
     main()
