@@ -36,5 +36,6 @@ class Bill:
             print(f"Bill saved under {billname}")
 
         # pylint does not like this, but it helped with debugging :P
+        # source: https://docs.python.org/3/tutorial/errors.html
         except Exception as e:
             print(f"Something went wrong :( -> {e}")
