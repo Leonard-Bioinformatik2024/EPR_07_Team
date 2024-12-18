@@ -6,16 +6,12 @@ __author__ = "8532653, Hoffmann"
 __email__ = "leonard.hoffmann@stud.uni-frankfurt.de"
 
 
-from product import Product
-
 class Order:
     """Contains methods to mark an order with an id.
     """
     id_counter = 1
 
     def __init__(self, product, special_requests=None):
-        if not isinstance(product, Product):
-            raise ValueError("invalide product")
 
         self.id = Order.id_counter
         Order.id_counter += 1

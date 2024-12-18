@@ -32,7 +32,8 @@ class Restaurant:
                     product = Product(name=df.values[row][0], price=float(df.values[row][3]))
                     self.products.append(product)
             print("Products loaded successfully.")
-            print(self.products)
+            # print(self.products)
+
         # throw Exeptions if the file is not found or the layout of its contents is incorrect.
         except FileNotFoundError:
             print("File not found! Check if the file is named correcly -> food.csv")
@@ -44,7 +45,7 @@ class Restaurant:
         """Find a table through its designated number.
         """
         for table in self.tables:
-            if tablenumber == table.number:
+            if table.number == tablenumber:
                 return table
         return None
 
@@ -52,7 +53,7 @@ class Restaurant:
         """Find a product through its designated name."""
         for product in self.products:
             # convert to lowercase
-            if productname.lower() == product.name.lower():
+            if productname == product.name:
                 return product
         return None
 
@@ -62,4 +63,5 @@ class Restaurant:
             print(f"Table {tablenumber} is occupied.")
         else:
             new_table = Table(tablenumber)
+            # print(new_table)
             self.tables.append(new_table)

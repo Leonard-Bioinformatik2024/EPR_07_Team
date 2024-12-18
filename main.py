@@ -38,12 +38,22 @@ def main():
             print('invalide input')
 
         if option == "1":
-            tablenumber = int(input("Enter the tablenumber: "))
+            while True:
+                try:
+                    tablenumber = int(input("Enter the tablenumber: "))
+                    break
+                except ValueError:
+                    print("invalide input")
             restaurant.add_table(tablenumber)
             print(f"Table {tablenumber} added.")
 
         elif option == "2":
-            tablenumber = int(input("Enter the tablenumber: "))
+            while True:
+                try:
+                    tablenumber = int(input("Enter the tablenumber: "))
+                    break
+                except ValueError:
+                    print("invalide input")
             table = restaurant.find_table(tablenumber)
             if not table:
                 print("Table not found.")
@@ -55,8 +65,7 @@ def main():
                 print("Product not found.")
                 continue
 
-            special_requests = input("Enter special requests \
-                                   (use comma as seperator or leave empty): ").split(",")
+            special_requests = input("Enter special requests (use comma as seperator): ").split(",")
             # create a clean list from input
             # https://www.datacamp.com/tutorial/python-trim?dc_referrer=https%3A%2F%2Fwww.google.com%2F
             special_requests = [sr.strip() for sr in special_requests if sr.strip()]
@@ -66,7 +75,12 @@ def main():
             print("Order was recorded.")
 
         elif option == "3":
-            tablenumber = int(input("Enter the tablenumber: "))
+            while True:
+                try:
+                    tablenumber = int(input("Enter the tablenumber: "))
+                    break
+                except ValueError:
+                    print("invalide input")
             table = restaurant.find_table(tablenumber)
             if not table:
                 print("Table not found.")
