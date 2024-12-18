@@ -10,6 +10,7 @@ from restaurant import Restaurant
 from order import Order
 from bill import Bill
 
+
 def main():
     """Using methods of the classes from imported modules to create an OMS.
     """
@@ -27,12 +28,14 @@ def main():
         print("\nMain Menue")
         print("1. Create new table")
         print("2. Take order")
-        print("3. Create bill")
-        print("4. Exit OMS")
+        print("3. Remove order")
+        print("4. Show orders")
+        print("5. Create bill")
+        print("6. Exit OMS")
 
         while True:
-            options = ['1', '2', '3', '4']
-            option = input("Choose an option [1-4]: ")
+            options = ['1', '2', '3', '4', '5', '6']
+            option = input("Choose an option [1-6]: ")
             if option in options:
                 break
             print('invalide input')
@@ -86,11 +89,40 @@ def main():
                 print("Table not found.")
                 continue
 
+            order_id = int(input("Enter the id of the Order you want to remove: "))
+            table.remove_order(order_id)
+
+        elif option == "4":
+            while True:
+                try:
+                    tablenumber = int(input("Enter the tablenumber: "))
+                    break
+                except ValueError:
+                    print("invalide input")
+            table = restaurant.find_table(tablenumber)
+            if not table:
+                print("Table not found.")
+                continue
+
+            table.show_orders()
+
+        elif option == "5":
+            while True:
+                try:
+                    tablenumber = int(input("Enter the tablenumber: "))
+                    break
+                except ValueError:
+                    print("invalide input")
+            table = restaurant.find_table(tablenumber)
+            if not table:
+                print("Table not found.")
+                continue
+
             bill = Bill(table)
             bill.create_bill()
             print(f"Created and saved bill for table {tablenumber}.")
 
-        elif option == "4":
+        elif option == "6":
             print("Closing OMS.")
             break
 

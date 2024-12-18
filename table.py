@@ -28,18 +28,13 @@ class Table:
     def remove_order(self, order_id):
         """Remove an order via its id.
         """
+        print(self.orders)
         for order in self.orders:
-            if order_id == order:
+            if order_id == order.id:
                 self.orders.remove(order)
                 print(f"Order {order_id} has been removed from table {self.number}.")
                 return
         print(f"No order with ID {order_id} found at table {self.number}.")
-
-    def total_price(self):
-        """Calculates the total price of all orders at a given table.
-        """
-        total = sum(order.price() for order in self.orders)
-        return total
 
     def show_orders(self):
         """show orders at a given table.
@@ -51,3 +46,9 @@ class Table:
         print(f"Orders of table {self.number}:")
         for order in self.orders:
             print(f"  ID: {order.id}, Product: {order.product}, Price: {order.price()} EUR")
+
+    def total_price(self):
+        """Calculates the total price of all orders at a given table.
+        """
+        total = sum(order.price() for order in self.orders)
+        return total
