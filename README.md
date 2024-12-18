@@ -3,6 +3,7 @@ Abgabe für die Teamaufgabe EPR_07
 
 Das Programm „Order-Management-System“ stellt Funktionen bereit, die es ermöglichen Bestellungen pro Tisch entgegen zu nehmen und Rechnungen zu Erstellen.
 
+## Installation und Start
 Installiert sein muss ein Python-Interpreter 3.10 oder neuer mit den Bibliotheken und Support-
 Programmen der Standard-Installation von www.python.org .
 
