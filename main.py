@@ -2,7 +2,7 @@
 """
 
 
-__author__ = "8532653, Hoffmann"
+__author__ = "8532653, Hoffmann, 8488705, Singh"
 __email__ = "leonard.hoffmann@stud.uni-frankfurt.de"
 
 
