@@ -9,16 +9,23 @@ __email__ = "leonard.hoffmann@stud.uni-frankfurt.de"
 from order import Order
 
 class Table:
-    """Contains methods to manage the orders at a given table.
+    """Used to create instances that contain a number for identification
+    und a list of orders (instances of Order) 
+    corresponding to the orders made at the given Table instance
+    Contains methods to manage the orders at a given table.
     """
 
     def __init__(self, number):
+        # tablenumber to identify a Table instance (e.g. in find_table())
         self.number = number
+        # list of Order instances
         self.orders = []
 
     def add_order(self, order):
         """Add a new order to a table.
         """
+        # checking if the given order is an instance of class Order
+        # and append it to the list of orders
         if isinstance(order, Order):
             self.orders.append(order)
             print(f"Order added to table {self.number}.")
@@ -28,9 +35,11 @@ class Table:
     def remove_order(self, order_id):
         """Remove an order via its id.
         """
-        print(self.orders)
+        # loop to check if there is an instance of order in the list of orders
+        # with a matching id to what is given
         for order in self.orders:
             if order_id == order.id:
+                # remove the Order instance from the list
                 self.orders.remove(order)
                 print(f"Order {order_id} has been removed from table {self.number}.")
                 return
@@ -39,16 +48,21 @@ class Table:
     def show_orders(self):
         """show orders at a given table.
         """
+        # if there are no instances in the list return early
         if not self.orders:
             print(f"There are no orders at table {self.number}.")
             return
 
         print(f"Orders of table {self.number}:")
+        # loop to print all order instances inside the list
         for order in self.orders:
-            print(f"  ID: {order.id}, Product: {order.product}, Price: {order.price()} EUR")
+            # uses the __str__ method of the instance
+            # https://www.pythontutorial.net/python-oop/python-__str__/
+            print(order)
 
     def total_price(self):
         """Calculates the total price of all orders at a given table.
         """
+        # order.price() includes the chrage for special requests
         total = sum(order.price() for order in self.orders)
         return total
