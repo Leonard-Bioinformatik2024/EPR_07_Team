@@ -6,7 +6,7 @@ __author__ = "8532653, Hoffmann"
 __email__ = "leonard.hoffmann@stud.uni-frankfurt.de"
 
 
-import pandas as pd # using the pandas library to read the food.csv file
+import pandas as pd # Using the pandas library to read the food.csv file
 
 from table import Table
 from product import Product
@@ -17,34 +17,34 @@ class Restaurant:
     """
 
     def __init__(self):
-        # list of Table instances
+        # List of table instances
         self.tables = []
-        # list of Product instances
+        # List of product instances
         self.products = []
 
     def load_products(self):
         """Reads in the products contained in the food.csv file
         and stores each item in a list as an instance of Product.
         """
-        # try to open the file food.csv
+        # Try to open the file food.csv
         try:
             with open('food.csv', mode='r', encoding='utf-8') as menue:
                 df = pd.read_csv(menue, sep=';')
-                # loop to store each item as an instance of Product in the list self.products
+                # Loop to store each item as an instance of product in the list self.products
                 for row in range(len(df)):
                     product = Product(name=df.values[row][0], price=float(df.values[row][3]))
                     self.products.append(product)
             print("Products loaded successfully.")
             # print(self.products)
 
-        # throw Exeptions if the file is not found
+        # Throw exception if the file is not found
         except FileNotFoundError:
             print("File not found! Check if the file is named correcly -> food.csv")
 
     def find_product(self, productname):
         """Find a product through its designated name.
         """
-        # loop to check if the given product is present in the list of products
+        # Loop to check if the given product is present in the list of products
         for product in self.products:
             if productname == product.name: # product.name is the name attribute of the instance
                 return product
@@ -53,7 +53,7 @@ class Restaurant:
     def find_table(self, tablenumber):
         """Find a table through its designated number.
         """
-        # loop to check if the given table is present in the list of tables
+        # Loop to check if the given table is present in the list of tables
         for table in self.tables:
             if tablenumber == table.number: # table.number is the number attribute of the instance
                 return table
@@ -62,12 +62,12 @@ class Restaurant:
     def add_table(self, tablenumber):
         """Add a new table to the list of occupied tables.
         """
-        # use find table
+        # Use find table
         if self.find_table(tablenumber):
             print(f"Table {tablenumber} already exists.")
         else:
             new_table = Table(tablenumber)
-            # print(new_table)
+            # Print(new_table)
             self.tables.append(new_table)
 
 
