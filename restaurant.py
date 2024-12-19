@@ -71,16 +71,38 @@ class Restaurant:
             self.tables.append(new_table)
 
 
-    # NOT YET IMPLEMENTED
+    # IMPLEMENTED
     def remove_table(self, tablenumber):
         """Removes the table from the list of tables.
         Until now there is no way to remove tables, so the restaurant needs to
         continualy create a new table or remove all the orders from an existing one to reuse it.
         """
-        pass # TODO: implement if there is enought time left
-
+         # Tries to find the table
+        table = self.find_table(tablenumber)
+        if table:
+            # If the table is found, it will be removed
+            self.tables.remove(table)
+            print(f"The table {tablenumber} has been removed")
+        else:
+            if table not found
+            # If table is not found, this will appear
+            print(f"The table {tablenumber} has not been found")
+        pass # TODO: Check if anything needs to be changed, please 
+        
+    # IMPLEMENTED
     def show_tables(self):
         """Shows the tables from the list of tables.
         Similar to show_orders(), to make it easier to identify a certain table.
         """
-        pass # TODO: implement if there is enought time left
+        # Checks if there are any tables available.
+        if not self.tables
+        # If not, then this will be shown
+            print(f"Sorry for the inconvenience but there are no tables available.")
+            return
+        # If tables are available, then this will be shown
+        print("The available tables in the system are: ")
+        # Makes a list of the available tables
+        for tables in self.tables
+            print(f"Tables avialable are {table.number}")
+        pass # TODO: Check if anything needs to be changed, please
+    
