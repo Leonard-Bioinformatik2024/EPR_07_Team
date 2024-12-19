@@ -40,7 +40,23 @@ Die Ausgabe der Rechnungen erfolgt im Programmordner.
 
 - weiter Funktionen geplant, jedoch nicht bis zur Deadline final umsetzbar
 
-## bekannte Bugs:
-### food.csv
+## 2. Benutzerhandbuch
+
+## 3. README
+Das Programm „Order-Management-System“ stellt Funktionen für ein einfaches Verwaltungssystem bereit.
+Es erlaubt für das Verwalten von Bestellungen pro Tisch in einem Restaurant und kann Rechnungen las TXT-Datei abspeichern
+
+### Installation
+Installiert sein muss ein Python-Interpreter 3.10 oder neuer mit den Bibliotheken und Support-Programmen der Standard-Installation von www.python.org .
+Alle restlichen notwendigen Dateien sind im Ordner OMS enthalten, welcher auf die Datei zum Start des Programms enthält.
+
+### Start des Programms
+Man starte das Programm „Order-Management-System“ in der für das jeweilige Betriebssystem üblichen Art und Weise, aus der Interpreter-Shell oder in einer IDE, z.B. IDLE.
+Weitere Angaben zur Dokumentation siehe 1. Analyse und bei Fragen zur Handhabung siehe 2. Benutzerhandbuch.
+
+### bekannte Bugs:
+Testfälle sind unter der enthaltenen Datei "testcases.pdf" zu finden.
+
+#### food.csv
 - Die Preise der CSV-Datei müssen als ein für Python zulässigen float eingetragen werden. Andernfalls sorgt eine falsche Hinterlegung des Preises zu Fehlern im Programm.
 - Das passende Format innerhalb der CSV-Datei muss eingehalten werden (d.h. Name des Produkts in die erste Spalte und Preis in die vierte.)
