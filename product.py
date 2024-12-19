@@ -14,8 +14,8 @@ class Product:
     """
 
     def __init__(self, name, price):
-        # checking if the name and price are of the correct type
-        # otherwise it will cause errors later down the line (e.g. calculation of total)
+        # Checking if the name and price are of the correct type
+        # Otherwise it will cause errors later down the line (e.g. calculation of total)
         if not isinstance(name, str) or not isinstance(price, (int, float)):
             raise ValueError("invalide input: name must be a string and price a number!")
 
