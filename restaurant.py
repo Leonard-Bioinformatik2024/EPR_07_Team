@@ -85,7 +85,7 @@ class Restaurant:
             print(f"The table {tablenumber} has been removed")
         else:
             if table not found
-            # If table is not found, this will appear
+            # If the table is not found, this will appear
             print(f"The table {tablenumber} has not been found")
         pass # TODO: Check if anything needs to be changed, please 
         
@@ -100,7 +100,7 @@ class Restaurant:
             print(f"Sorry for the inconvenience but there are no tables available.")
             return
         # If tables are available, then this will be shown
-        print("The available tables in the system are: ")
+        print(f"The available tables in the system are: ")
         # Makes a list of the available tables
         for tables in self.tables
             print(f"Tables avialable are {table.number}")
