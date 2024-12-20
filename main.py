@@ -17,34 +17,36 @@ def main():
 
     print("Order-Management-System")
 
-    # create instance of Restaurant
+    # Create instance of Restaurant
     restaurant = Restaurant()
 
-    # use load_products from the instance Restaurant to create a list of all available products
+    # Use load_products from the instance Restaurant to create a list of all available products
     restaurant.load_products()
 
-    # loop for multiple inputs
+    # Loop for multiple inputs
     while True:
-        # printing the menue options
+        # Printing the menue options
         print("\nMain Menue")
         print("1. Create new table")
-        print("2. Take order")
-        print("3. Remove order")
-        print("4. Show orders")
-        print("5. Create bill")
-        print("6. Exit OMS")
+        print("2. Show tables")
+        print("3. Remove table")
+        print("4. Take order")
+        print("5. Show orders")
+        print("6. Remove order")
+        print("7. Create bill")
+        print("8. Exit OMS")
 
-        # loop for choosing main menue options
+        # Loop for choosing main menue options
         while True:
-            options = ['1', '2', '3', '4', '5', '6']
-            option = input("Choose an option [1-6]: ")
+            options = ['1', '2', '3', '4', '5', '6', '7', '8']
+            option = input("Choose an option [1-8]: ")
             if option in options:
                 break
             print('invalide input')
 
         # 1. Create new table
         if option == "1":
-            # loop to enter a tablenumber
+            # Loop to enter a tablenumber
             while True:
                 try:
                     tablenumber = int(input("Enter the tablenumber: "))
@@ -54,22 +56,43 @@ def main():
             restaurant.add_table(tablenumber)
             print(f"Table {tablenumber} added.")
 
-        # 2. Take order
+        # 2. Show tables
         elif option == "2":
-            # loop to enter a tablenumber
+            if not restaurant.tables:
+                print("There are no occupied tables.")
+                continue
+            # Using show_orders() from the given Table instance to print all orders present inside
+            restaurant.show_tables()
+
+        # 3. Remove tables
+        elif option == "3":
+            # Loop to enter a tablenumber
             while True:
                 try:
                     tablenumber = int(input("Enter the tablenumber: "))
                     break
                 except ValueError:
                     print("invalide input")
-            # recieves the given table instance through find_table()
+            # Uses remove_table() from Restaurant to remove the given table instance
+            # from the list of table instances.
+            restaurant.remove_table(tablenumber)
+
+        # 4. Take order
+        elif option == "4":
+            # Loop to enter a tablenumber
+            while True:
+                try:
+                    tablenumber = int(input("Enter the tablenumber: "))
+                    break
+                except ValueError:
+                    print("invalide input")
+            # Recieves the given table instance through find_table()
             table = restaurant.find_table(tablenumber)
             if not table:
                 print("Table not found.")
                 continue
 
-            # recieves the given product instance through find_product()
+            # Recieves the given product instance through find_product()
             productname = input("Enter the name of the product: ")
             product = restaurant.find_product(productname)
             if not product:
@@ -77,27 +100,44 @@ def main():
                 continue
 
             special_requests = input("Enter special requests (use comma as seperator): ").split(",")
-            # create a clean list from input
+            # Create a clean list from input
             # https://www.datacamp.com/tutorial/python-trim?dc_referrer=https%3A%2F%2Fwww.google.com%2F
             special_requests = [sr.strip() for sr in special_requests if sr.strip()]
 
-            # passing in the product instance and the list of special requests
+            # Passing in the product instance and the list of special requests
             # to create an instance of Order and add it the the list of orders
-            # inside the table instance chosen before
+            # inside the table instance chosen before.
             order = Order(product, special_requests)
             table.add_order(order)
             print("Order was recorded.")
 
-        # 3. Remove order
-        elif option == "3":
-            # loop to enter a tablenumber
+        # 5. Show orders
+        elif option == "5":
+            # Loop to enter a tablenumber
             while True:
                 try:
                     tablenumber = int(input("Enter the tablenumber: "))
                     break
                 except ValueError:
                     print("invalide input")
-            # recieves the given table instance through find_table()
+            # Recieves the given table instance through find_table()
+            table = restaurant.find_table(tablenumber)
+            if not table:
+                print("Table not found.")
+                continue
+            # Using show_orders() from the given Table instance to print all orders present inside
+            table.show_orders()
+
+        # 6. Remove order
+        elif option == "6":
+            # Loop to enter a tablenumber
+            while True:
+                try:
+                    tablenumber = int(input("Enter the tablenumber: "))
+                    break
+                except ValueError:
+                    print("invalide input")
+            # Recieves the given table instance through find_table()
             table = restaurant.find_table(tablenumber)
             if not table:
                 print("Table not found.")
@@ -106,48 +146,31 @@ def main():
             order_id = int(input("Enter the id of the Order you want to remove: "))
             table.remove_order(order_id)
 
-        # 4. Show orders
-        elif option == "4":
-            # loop to enter a tablenumber
+        # 7. Create bill
+        elif option == "7":
+            # Loop to enter a tablenumber
             while True:
                 try:
                     tablenumber = int(input("Enter the tablenumber: "))
                     break
                 except ValueError:
                     print("invalide input")
-            # recieves the given table instance through find_table()
+            # Recieves the given table instance through find_table()
             table = restaurant.find_table(tablenumber)
             if not table:
                 print("Table not found.")
                 continue
-            # using show_orders() from the given Table instance to print all orders present inside
-            table.show_orders()
-
-        # 5. Create bill
-        elif option == "5":
-            # loop to enter a tablenumber
-            while True:
-                try:
-                    tablenumber = int(input("Enter the tablenumber: "))
-                    break
-                except ValueError:
-                    print("invalide input")
-            # recieves the given table instance through find_table()
-            table = restaurant.find_table(tablenumber)
-            if not table:
-                print("Table not found.")
-                continue
-            # creates an instance of Bill
+            # Creates an instance of Bill
             bill = Bill(table)
             # Using create_bill() from the Bill instance to save a txt-file,
             # which contains all orders at the given Table instance and the total price.
             bill.create_bill()
             print(f"Created and saved bill for table {tablenumber}.")
 
-        # 6. Exit OMS
-        elif option == "6":
+        # 8. Exit OMS
+        elif option == "8":
             print("Closing OMS.")
-            break # breaks the main menue loop and closes the program
+            break # Breaks the main menue loop and closes the program
 
 if __name__ == "__main__":
     main()
