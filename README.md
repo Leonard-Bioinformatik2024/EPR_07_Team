@@ -1,11 +1,12 @@
 # EPR_07_Team
 Abgabe für die Teamaufgabe EPR_07
+8532653, Hoffmann, 8488705, Singh
 
 ## 1. Analyse:
 Das Programm wird objektorientiert entwickelt.
 
 Zu den notwendigen Funktionalitäten gehören:
-  1. Einlesen einer CSV-Datei, welche die angebotenen Produkte enthält. Diese Informationen sollendann innerhalb des Programms genutzt werden können.
+  1. Einlesen einer CSV-Datei, welche die angebotenen Produkte enthält. Diese Informationen sollen dann innerhalb des Programms genutzt werden können.
   2. Bestellungen sollen pro Tisch vermerkt werden.
      - unter Einbeziehung von Nachbestellungen und Stornierungen
      - Sonderwünschen sollen berücksichtigt werden
@@ -27,6 +28,8 @@ Abgesehen von den erstellten Rechnungen wird nicht gespeichert. Also keine Wiede
 Umsetzung als Klassen, deren Instanzen als Objekte in Listen gespeichert und darus aufgerufen, bzw. angesteuert werden können.
 Jedes Modul enthält für die Übersicht eine einzelne Klasse, die können, wo notwendig, importiert werden.
 Alles wird über eine main.py Datei funktional zusammengeführt und kann darüber gestartet werden.
+
+![[UML_EPR_07.png]]
  
 ### Ausgabe: 
 Die Konsole, worüber das Programm gesteuert wird, gibt Hinweise zum Status der jeweils gewählten Vorgänge aus.
