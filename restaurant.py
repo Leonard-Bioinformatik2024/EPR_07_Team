@@ -70,39 +70,32 @@ class Restaurant:
             # Print(new_table)
             self.tables.append(new_table)
 
-
-    # IMPLEMENTED
-    def remove_table(self, tablenumber):
-        """Removes the table from the list of tables.
-        Until now there is no way to remove tables, so the restaurant needs to
-        continualy create a new table or remove all the orders from an existing one to reuse it.
-        """
-         # Tries to find the table
-        table = self.find_table(tablenumber)
-        if table:
-            # If the table is found, it will be removed
-            self.tables.remove(table)
-            print(f"The table {tablenumber} has been removed")
-        else:
-            if table not found
-            # If the table is not found, this will appear
-            print(f"The table {tablenumber} has not been found")
-        pass # TODO: Check if anything needs to be changed, please 
-        
-    # IMPLEMENTED
     def show_tables(self):
         """Shows the tables from the list of tables.
         Similar to show_orders(), to make it easier to identify a certain table.
         """
         # Checks if there are any tables available.
-        if not self.tables
+        if not self.tables:
         # If not, then this will be shown
-            print(f"Sorry for the inconvenience but there are no tables available.")
+            print("There are no tables occupied.")
             return
         # If tables are available, then this will be shown
-        print(f"The available tables in the system are: ")
+        print("The occupied tables in the system are: ")
+        occupied_tables = []
         # Makes a list of the available tables
-        for tables in self.tables
-            print(f"Tables avialable are {table.number}")
-        pass # TODO: Check if anything needs to be changed, please
-    
+        for table in self.tables:
+            occupied_tables.append(table.number)
+        print(occupied_tables)
+
+    def remove_table(self, tablenumber):
+        """Removes the table from the list of tables.
+        Until now there is no way to remove tables, so the restaurant needs to
+        continualy create a new table or remove all the orders from an existing one to reuse it.
+        """
+        for table in self.tables:
+            if tablenumber == table.number:
+                # Remove the order instance from the list
+                self.tables.remove(table)
+                print(f"Table number {tablenumber} is no longer occupied.")
+                return
+        print(f"No table with number {tablenumber} is occupied.")
